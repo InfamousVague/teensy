@@ -5,7 +5,11 @@ module.exports = class Teensy {
 
   constructor(dbName, update) {
     this.db_name = dbName;
-    this.db = JSON.parse(fs.readFileSync(dbName, 'utf8'));
+    this.db = (() => {
+      if( fs.existsSync(dbName) )
+        return JSON.parse(fs.readFileSync(dbName, 'utf8'));
+      return [];
+    })();
     this.update = update;
   }
 

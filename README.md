@@ -1,4 +1,4 @@
-# Teensy
+# Teensy ![Travis](https://travis-ci.org/wski/teensy.svg)
 
 At just 1.5k and 62 lines of JS, Teensy is a very small flat file database.
 

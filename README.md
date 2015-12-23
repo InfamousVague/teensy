@@ -25,13 +25,13 @@ let DB = new Teensy('teensy.db', 1000);
 
 // Easily put data into Teensy. _id and _rev are required!
 // You can use _rev to save multiple versions of an _id.
-DB.put({_id: 'animal', _rev: 2,name: 'bolo', fangs: true});
+DB.put({_id: 'Ringo', _rev: 2, color: 'Orange', fangs: true});
 
 // You can find data just as easily. Simply provide query params to .seek().
-let seekData = DB.seek({_id: 'animal', fangs: true});
+let seekData = DB.seek({_id: 'Ringo', fangs: true});
 
 // If you want data gone, simply use .poof() while passing a query.
-DB.poof({name: 'bolo'});
+DB.poof({color: 'Orange'});
 
 // Be sure to include the coldStorage() call, this is how Teensy stores stuff!
 DB.coldStorage();

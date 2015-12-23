@@ -57,6 +57,7 @@ module.exports = class Teensy {
         return true;
       }
     });
+    return this;
   }
 
 }

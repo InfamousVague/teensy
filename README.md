@@ -4,6 +4,14 @@ At just 1.5k and 62 lines of JS, Teensy is a very small flat file database.
 
 ***
 
+## How Teensy Works
+
+Teensy stores data in memory and writes it to a file periodically (defined when
+ you create a new Teensy DB). Teensy will then look for that file and load it
+into memory next time it's initialized.
+
+***
+
 ## Installation
 
 ```
@@ -36,9 +44,3 @@ DB.poof({color: 'Orange'});
 // Be sure to include the coldStorage() call, this is how Teensy stores stuff!
 DB.coldStorage();
 ```
-
-## How Teensy Works
-
-Teensy stores data in memory and writes it to a file periodically (defined when
- you create a new Teensy DB). Teensy will then look for that file and load it
-into memory next time it's initialized.

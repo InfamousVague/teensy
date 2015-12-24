@@ -1,8 +1,25 @@
 # Teensy ![Travis](https://travis-ci.org/wski/teensy.svg)
 
-At just 1.5k and ~60 lines of JS, Teensy is a very small flat file database.
+At just 1.5k and less than 100 lines of JS, Teensy is a very small flat file database.
 
-Metrics: 0.600ms for Poof and Seek requests, 1ms for Put requests on average.
+## Performance Metrics
+
+1,000 Item:
+
+- Seek 1,000 results: *60μ seconds (0.060ms)*
+- Put one item: *0.600ms*
+
+5,000 Item:
+
+- Seek 5,000 results: *3.250ms*
+- Put one item: *1ms*
+
+50,000 Item:
+
+- Seek 50,000 results: *21.713ms*
+- Put one item: *2.714ms*
+
+*Metrics gathered on 2015 MacBook 12' running Node v5.3.0. Requests made every 50ms.*
 
 ## How Teensy Works
 

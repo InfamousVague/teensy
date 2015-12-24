@@ -19,7 +19,7 @@ At just 1.5k and less than 100 lines of JS, Teensy is a very small flat file dat
 - Seek 50,000 results: *21.713ms*
 - Put one item: *2.714ms*
 
-*Metrics gathered on 2015 MacBook 12' running Node v5.3.0. Requests made every 50ms.*
+*Metrics gathered on 2015 MacBook 12" running Node v5.3.0. Requests made every 50ms.*
 
 ## How Teensy Works
 

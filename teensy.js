@@ -11,6 +11,7 @@ module.exports = class Teensy {
       return [];
     })();
     this.update = update;
+    this.listner = () => {};
   }
 
   store(last) {
@@ -20,6 +21,11 @@ module.exports = class Teensy {
         this.store(false);
       }, this.update);
     });
+    return this;
+  }
+
+  subscribe(listner) {
+    this.listner = listner;
     return this;
   }
 
@@ -45,6 +51,7 @@ module.exports = class Teensy {
         if ( i === this.db.length - 1 && !found ) this.db.push(data);
       });
       if(!this.db.length) this.db.push(data);
+      this.listner(data, this.db);
     }
     return this;
   }

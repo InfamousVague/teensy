@@ -2,27 +2,19 @@
 
 At just 1.5k and ~60 lines of JS, Teensy is a very small flat file database.
 
-***
-
 ## How Teensy Works
 
 Teensy stores data in memory and writes it to a file periodically (defined when
  you create a new Teensy DB). Teensy will then look for that file and load it
 into memory next time it's initialized.
 
-***
+## Usage
 
-## Installation
-
+Install using npm. Teensy requires ES6 features to be enabled, Use of node
+5.3.0+ is recommended.
 ```
 npm install --save teensy
 ```
-
-***
-
-## Usage
-
-Teensy requires ES6 features to be enabled, Use of node 5.3.0+ is recommended.
 
 First, require teensy.
 ```javascript

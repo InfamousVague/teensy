@@ -1,6 +1,6 @@
 # Teensy ![Travis](https://travis-ci.org/wski/teensy.svg)
 
-At just 1.5k and 62 lines of JS, Teensy is a very small flat file database.
+At just 1.5k and ~60 lines of JS, Teensy is a very small flat file database.
 
 ***
 
@@ -24,23 +24,29 @@ npm install --save teensy
 
 Teensy requires ES6 features to be enabled, Use of node 5.3.0+ is recommended.
 
+First, require teensy.
 ```javascript
-// Require Teensy.
 const Teensy = require('teensy');
+```
 
-// Create your database, specifying your db filename, and storage interval.
-let DB = new Teensy('teensy.db', 1000);
+Create your database, specifying your db filename, and storage interval.
+Be sure to include the store() call, this is how Teensy stores stuff!
 
-// Easily put data into Teensy. _id and _rev are required!
-// You can use _rev to save multiple versions of an _id.
+```javascript
+let DB = new Teensy('teensy.db', 1000).store();
+```
+
+Easily put data into Teensy. id and rev required.
+```javascript
 DB.put({_id: 'Ringo', _rev: 2, color: 'Orange', fangs: true});
+```
 
-// You can find data just as easily. Simply provide query params to .seek().
+You can find data just as easily. Simply provide query params to .seek().
+```javascript
 let seekData = DB.seek({_id: 'Ringo', fangs: true});
+```
 
-// If you want data gone, simply use .poof() while passing a query.
+If you want data gone, simply use .poof() while passing a query.
+```javascript
 DB.poof({color: 'Orange'});
-
-// Be sure to include the coldStorage() call, this is how Teensy stores stuff!
-DB.coldStorage();
 ```

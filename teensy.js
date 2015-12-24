@@ -13,13 +13,14 @@ module.exports = class Teensy {
     this.update = update;
   }
 
-  coldStorage(last) {
+  store(last) {
     fs.writeFile(`./${this.db_name}`, JSON.stringify(this.db), (err) => {
       if (last) process.exit();
       setTimeout(() => {
-        this.coldStorage(false);
+        this.store(false);
       }, this.update);
     });
+    return this;
   }
 
   seek(query){

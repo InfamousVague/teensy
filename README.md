@@ -4,20 +4,25 @@ At just 1.5k and less than 100 lines of JS, Teensy is a very small flat file dat
 
 ## Performance Metrics
 
-1,000 Item:
+100 Item:
 
-- Seek 1,000 results: *60μ seconds (0.060ms)*
-- Put one item: *0.600ms*
+- Seek 1 results: *47μs (0.047ms)*
+- Put one item: *150μs (0.150ms)*
 
 5,000 Item:
 
-- Seek 5,000 results: *3.250ms*
-- Put one item: *1ms*
+- Seek 5,000 results: *4.250ms*
+- Put one item: *0.525ms*
 
 50,000 Item:
 
 - Seek 50,000 results: *21.713ms*
-- Put one item: *2.714ms*
+- Put one item: *2ms*
+
+100,000 Item:
+
+- Seek 50,000 results: *47.450ms*
+- Put one item: *3ms*
 
 *Metrics gathered on 2015 MacBook 12" running Node v5.3.0. Requests made every 50ms.*
 

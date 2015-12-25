@@ -31,25 +31,25 @@ module.exports = class Teensy {
 
   seek(query){
     let results = [];
-    this.db.map((obj) => {
+    for (let i = 0; i < this.db.length; i++) {
       let matches = 0;
       for (let key in query){
-        if (obj[key] && obj[key] === query[key]) matches++;
-        if (matches === Object.keys(query).length) results.push(obj);
+        if (this.db[i][key] && this.db[i][key] === query[key]) matches++;
+        if (matches === Object.keys(query).length) results.push(this.db[i]);
       }
-    });
+    }
     return results;
   }
 
   put(data){
     if (data._rev && data._id) {
       let found = false;
-      this.db.map((obj, i) => {
-        if (obj._id === data._id && obj._rev && obj._rev === data._rev) {
-          found = true; this.db[i] = Object.assign({}, obj, data);
+      for (let i = 0; i < this.db.length; i++) {
+        if (this.db[i]._id === data._id && this.db[i]._rev && this.db[i]._rev === data._rev) {
+          found = true; this.db[i] = Object.assign({}, this.db[i], data);
         }
         if ( i === this.db.length - 1 && !found ) this.db.push(data);
-      });
+      }
       if(!this.db.length) this.db.push(data);
       this.listner(data, this.db);
     }

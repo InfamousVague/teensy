@@ -64,10 +64,14 @@ let seekData = DB.seek({_id: 'Ringo', fangs: true});
 
 You can subscribe to changes in the DB.
 ```javascript
-DB.subscribe((data, db) => {
-  // data = the newly added data.
-  // db = the entire database.
-});
+DB.subscribe((data) => {
+  // do stuff
+}, 'subscription_id');
+```
+
+You can also unsubscribe.
+```javascript
+DB.unsubscribe('subscription_id');
 ```
 
 If you want data gone, simply use .poof() while passing a query.

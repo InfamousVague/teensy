@@ -11,7 +11,7 @@ module.exports = class Teensy {
       return [];
     })();
     this.update = update;
-    this.listner = () => {};
+    this.listeners = [];
   }
 
   store(last) {
@@ -24,8 +24,25 @@ module.exports = class Teensy {
     return this;
   }
 
-  subscribe(listner) {
-    this.listner = listner;
+  subscribe(listener, id) {
+    this.listeners.push({
+      listener,
+      id: (id) ? id : 'default'
+    });
+    return this;
+  }
+
+  unsubscribe(id) {
+    this.listeners = this.listeners.filter((obj, i) => {
+        if(obj.id != id) return true;
+    });
+    return this;
+  }
+
+  broadcast(data){
+    for (let i = 0; i < this.listeners.length; i++) {
+      this.listeners[i].listener(data);
+    }
     return this;
   }
 
@@ -46,12 +63,16 @@ module.exports = class Teensy {
       let found = false;
       for (let i = 0; i < this.db.length; i++) {
         if (this.db[i]._id === data._id && this.db[i]._rev && this.db[i]._rev === data._rev) {
-          found = true; this.db[i] = Object.assign({}, this.db[i], data);
+          found = true;
+          this.db[i] = Object.assign({}, this.db[i], data);
         }
         if ( i === this.db.length - 1 && !found ) this.db.push(data);
       }
       if(!this.db.length) this.db.push(data);
-      this.listner(data, this.db);
+      this.broadcast({
+        data,
+        db: this.db
+      });
     }
     return this;
   }
